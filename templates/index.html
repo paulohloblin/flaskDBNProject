@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}
+    Bayesian Click Model
+{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/styles_index.css') }}">
+{% endblock %}
+{% block navlinks %}
+    <li class="nav-item ">
+                <a class="nav-link active" href="{{ url_for('index')}}">Головна</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('model_info')}}">Байєсова модель</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('existing_prods')}}">Наявні продукти</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('results')}}">Візуалізація результатів</a>
+            </li>
+{% endblock %}
+{% block content %}
+    <h1>Байєсова клікова модель для незміщених прогнозувань CTR</h1>
+    <p>
+    Пошукові системи, інтернет-магазини та рекомендаційні системи на сьогодні є невід’ємними атрибутами користувацького досвіду. Тому актуальною лишається задача аналізу та прогнозування поведінки користувачів в цих системах.
+Однією з метрик зворотного зв’язку користувачів в пошукових та маркетингових системах є Click-Through Rate (CTR) – рейтинг кліків або коефіцієнт клікабельності. CTR дорівнює відношенню кількості кліків на банер чи посилання до загальної кількості їхніх показів.
+Оскільки для CTR характерне зміщення по позиціях результів пошуку (чим нижче результат у списку, тим менше буде його фактичний CTR), то постає задача незміщеного прогнозування цієї величини. Тобто обчислення такого її значення, яке б не залежало від позиції результату у видачі. Для вирішення цієї задачі використовується Байєсова клікова модель.
+
+    </p>
+    <center>
+        <a href="{{ url_for('model_info')}}" class="btn btn-outline-light" role="button" aria-pressed="true">Що таке Байєсова клікова модель?</a>
+        <a href="{{ url_for('existing_prods')}}" class="btn btn-outline-light" role="button" aria-pressed="true">Існуючі інструменти аналізу CTR</a>
+        <a href="{{ url_for('results')}}" class="btn btn-light" role="button" aria-pressed="true">Результати роботи Байєсової моделі</a>
+    </center>
+{% endblock %}

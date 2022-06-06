@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+    {% block title %}
+    Результати
+    {% endblock %}
+    {% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/styles_results.css') }}">
+    {% endblock %}
+{% block navlinks %}
+    <li class="nav-item ">
+   <a class="nav-link" href="{{ url_for('index')}}">Головна</a>
+</li>
+<li class="nav-item ">
+   <a class="nav-link" href="{{ url_for('model_info')}}">Байєсова модель</a>
+</li>
+<li class="nav-item ">
+   <a class="nav-link" href="{{ url_for('existing_prods')}}">Наявні продукти</a>
+</li>
+<li class="nav-item active">
+   <a class="nav-link" href="{{ url_for('results')}}">Візуалізація результатів</a>
+</li>
+{% endblock %}
+  {% block content %}
+    <h1>DBN для прогнозування CTR</h1>
+    <form action="{{ url_for("gfg")}}" method="post" id="input-form" class="top-input-form">
+      <div class="input-group mb-3">
+
+        <input name="search_q" type="text" class="form-control"
+               id="exampleInputEmail1" placeholder="Уведіть запит..."
+               value={{ qr }}></input>
+        <script>
+               $( function() {
+                 var availableTags = [
+                     {% for query in queries %}
+                         "{{query}}",
+                     {% endfor %}
+                 ];
+                 $( "#exampleInputEmail1" ).autocomplete({
+                   source: availableTags
+                 });
+               } );
+        </script>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit">🔍</button>
+        </div>
+      </div>
+    </form>
+    <form id="list-form" >
+      <div class="form-group">
+        <label for="exampleInputPassword1">Результати</label>
+
+        <select name="inputState" id="inputState" class="form-control">
+          <option selected>Оберіть документ у видачі...</option>
+          {% for doc in doc_list %}
+             <option value="{{ doc }}">{{ doc }}</option>
+          {% endfor %}
+        </select>
+      <script type="text/javascript">
+          $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+          $(function() {
+    $('#inputState').change(function() {
+        console.log('hello')
+        $.getJSON($SCRIPT_ROOT + '/ctr_res', {
+        inputState: $('select[name="inputState"]').val(),
+      }, function(data) {
+        console.log(data);
+        $("#res-ctr").text(data.ctr + '%')
+            $("#res-sat").text(data.sat + '%')
+            $("#res-rel").text(data.relev + '%')
+      });
+    });
+});
+  </script>
+      </div>
+    </form>
+    <form class="results-table">
+      <table class="table">
+        <tr>
+          <th>Прогнозоване значення CTR</th>
+          <th colspan="2">Додаткові параметри</th>
+        </tr>
+        <tr>
+          <td id = "res-ctr" class="results-table-ctr" rowspan="2">0%</td>
+          <td class="results-table-subheader">Задовільність</td>
+          <td class="results-table-subheader">Релевантність</td>
+        </tr>
+        <tr>
+          <td id = "res-sat">0%</td>
+          <td id = "res-rel">0%</td>
+        </tr>
+      </table>
+    </form>
+    <form>
+
+    </form>
+{% endblock %}

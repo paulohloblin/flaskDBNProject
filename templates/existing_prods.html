@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}
+    Наявні подукти
+{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/styles_existing_prods.css') }}">
+{% endblock %}
+{% block navlinks %}
+    <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('index')}}">Головна</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('model_info')}}">Байєсова модель</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link active" href="{{ url_for('existing_prods')}}">Наявні продукти</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('results')}}">Візуалізація результатів</a>
+            </li>
+{% endblock %}
+{% block content %}
+    <h1>Сервіси та веб-інструменти для аналізу кліків користувачів</h1>
+    <p>
+    Окрім ранжування результатів пошукових запитів, ще однією важливою сферою, де виникає необхідність оцінювати та прогнозувати дії користувача, є онлайн-маркетинг. Так, кожна з таких компаній має свої інструменти, що надають рекламодавцям можливість планувати свої кампанії, а також аналізувати зворотній зв’язок від користувачів. У функціонал таких інструментів  входить і оцінка значень конкретних показників (витрати бюджету, CTR, CPC, CTM).
+Нижче наведені програмні продукти, сервіси та онлайн-інструменти, які використовують для аналізу даних про клікову активність користувачів.
+    </p>
+    <h3>
+    Веб-інструмент Google Keyword Planner
+    </h3>
+    <p>
+    Планувальник ключових слів Google (Google Keyword Planner) надає можливість знаходити та аналізувати ключові слова для власних рекламних кампаній.
+    </p>
+    <center><img class="existing-prods-img" src="{{ url_for('static', filename= 'img/prod1.PNG') }}"></center>
+    <p></p>
+    <h3>
+    Інструмент Microsoft Keyword Planner
+    </h3>
+    <p>
+    Microsoft Keyword Planner так само призначений для дослідження ключових слів і визначення найбільш релевантних груп оголошень і ключових фраз для підвищення ефективності кампанії. Але аналіз стосується вже власної пошукової мережі – Microsoft Bing. Microsoft Keyword Planner дозволяє планувати витрати і динамічно редагувати бюджет доти, поки рекламодавець не буде задоволений приблизним обсягом трафіку та ефективністю ключових слів.
+    </p>
+    <center><img class="existing-prods-img" src="{{ url_for('static', filename= 'img/prod2.PNG') }}"></center>
+    <p></p>
+    <h3>
+    Facebook Campaign Planner
+    </h3>
+    <p>
+    Campaign Planner - це окремий інструмент для фахівців з медіапланування, який дозволяє складати, порівнювати та купувати медіаплани, а також публікувати їх в соціальних мережах Facebook, Instagram та Audience Network.
+    </p>
+    <center><img class="existing-prods-img" src="{{ url_for('static', filename= 'img/prod3.PNG') }}"></center>
+    <p></p>
+{% endblock %}
