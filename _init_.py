@@ -63,5 +63,9 @@ def results():
     return render_template('results.html', queries=queries, doc_list=doc_list, qr=query[0])
 
 
+def getApp():
+    return app
+
+
 if __name__ == '__main__':
     app.run()
